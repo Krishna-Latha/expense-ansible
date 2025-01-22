@@ -11,11 +11,13 @@
     ansible.builtin.package:
       name: mysql-server
       state: installed
+  
   - name: start and enable mysql server
     ansible.builtin.service:
       name: mysqld
       state: started
       enabled: yes
+ 
   - name: connect to mysql server
     community.mysql.mysql_info:
       login_user: root
@@ -27,3 +29,7 @@
   - name: print the output
     ansible.builtin.debug:
       msg: "MySQL info: {{ mysql_info }}"
+
+  - name: setup roop password
+    ansible.builtin.command: " mysql_secure_installation --set-root-pass ExpenseApp@1 "
+    when: mysql_info.failed is true
