@@ -62,3 +62,10 @@
       login_password: ExpenseApp@1
       login_host: mysql.daws-82s.cloud
       target: /app/schema/backend.sql
+
+  - name: deamon reload and restart service
+    ansible.builtin.systemd.service:
+      enabled: true
+      state: restarted
+      deamon_reload: true
+      name: backend
