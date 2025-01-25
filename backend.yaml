@@ -63,9 +63,9 @@
       login_host: mysql.daws-82s.cloud
       target: /app/schema/backend.sql
 
-  - name: deamon reload and restart service
-    ansible.builtin.systemd.service:
+  - name: daemon reload and restart service
+    ansible.builtin.systemd_service:
       enabled: true
       state: restarted
-      deamon_reload: true
+      daemon_reload: true
       name: backend
